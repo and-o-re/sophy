@@ -1,0 +1,47 @@
+# ==========================================
+# ARQUIVOS SENSÍVEIS, CREDENCIAIS E AMBIENTE
+# ==========================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*credentials*.json
+*secret*.json
+
+# ==========================================
+# AMBIENTES VIRTUAIS & CACHE PYTHON
+# ==========================================
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ==========================================
+# BANCOS DE DADOS LOCAIS, BACKUPS E VAULT PESSOAL
+# ==========================================
+database/*.db
+database/*.db-shm
+database/*.db-wal
+database/*.sqlite*
+database/chroma_db/
+.code_backups/
+
+# Preserva apenas a estrutura template do Vault (Persona inicial e pastas vazias),
+# ignorando notas pessoais, diários e arquivos espelhados do Google Drive:
+obsidian_vault/*
+!obsidian_vault/00_Persona/
+obsidian_vault/00_Persona/*
+!obsidian_vault/00_Persona/personalidade_principal.md
+
+# ==========================================
+# LOGS E TEMPORÁRIOS DO SISTEMA
+# ==========================================
+*.log
+.DS_Store
+Thumbs.db

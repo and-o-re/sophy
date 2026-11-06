@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOPHY (v2.1) // SANTUÁRIO DAS RUÍNAS ANTIGAS [PIXEL FANTASY]</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <!-- Atmosfera Pixel Art: Textura de Ruínas Musgosas & Vagalumes da Floresta -->
+  <div class="ruins-canopy-overlay" aria-hidden="true"></div>
+  <div class="ruins-vignette" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <!-- BARRA LATERAL: PILAR DE PEDRA E MUSGO -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="pixel-avatar" aria-label="Sophy Maga das Ruínas Pixel">
+          <!-- Sprite 16x16 Pixel Art: Maga Élfica Fofa (Sophy / Frieren vibe) nas Ruínas -->
+          <svg viewBox="0 0 16 16" width="48" height="48" shape-rendering="crispEdges">
+            <!-- Fundo pedra musgosa -->
+            <rect width="16" height="16" fill="#0d1711"/>
+            <!-- Arco de ruína e folhas no topo -->
+            <rect x="2" y="1" width="12" height="1" fill="#3a4f40"/>
+            <rect x="3" y="1" width="3" height="1" fill="#5da665"/>
+            <rect x="11" y="1" width="2" height="1" fill="#5da665"/>
+            <!-- Cabelo prateado/branco de maga élfica (twin-tails tipo Frieren) -->
+            <rect x="4" y="3" width="8" height="2" fill="#e4f0df"/>
+            <rect x="2" y="4" width="2" height="8" fill="#d3e6cc"/>
+            <rect x="12" y="4" width="2" height="8" fill="#d3e6cc"/>
+            <!-- Lacinhos/presilhas douradas das marias-chiquinhas -->
+            <rect x="3" y="4" width="1" height="1" fill="#d8b86a"/>
+            <rect x="12" y="4" width="1" height="1" fill="#d8b86a"/>
+            <!-- Orelhinhas de elfa fofas apontando para os lados -->
+            <rect x="1" y="7" width="2" height="1" fill="#f3dec8"/>
+            <rect x="13" y="7" width="2" height="1" fill="#f3dec8"/>
+            <!-- Rosto meigo -->
+            <rect x="4" y="5" width="8" height="6" fill="#f7e7d4"/>
+            <!-- Olhos verde-esmeralda/mana brilhantes -->
+            <rect x="5" y="7" width="2" height="2" fill="#4d8a56"/>
+            <rect x="9" y="7" width="2" height="2" fill="#4d8a56"/>
+            <rect x="5" y="7" width="1" height="1" fill="#86cf90"/>
+            <rect x="9" y="7" width="1" height="1" fill="#86cf90"/>
+            <!-- Bochechas coradas fofas -->
+            <rect x="4" y="9" width="1" height="1" fill="#e89999"/>
+            <rect x="11" y="9" width="1" height="1" fill="#e89999"/>
+            <!-- Sorriso fofo ＜(´⌯  ̫⌯`)＞ -->
+            <rect x="7" y="9" width="2" height="1" fill="#c97a63"/>
+            <!-- Manto branco e dourado de maga + cajado rubi -->
+            <rect x="4" y="11" width="8" height="4" fill="#e4f0df"/>
+            <rect x="5" y="11" width="6" height="1" fill="#d8b86a"/>
+            <rect x="7" y="12" width="2" height="2" fill="#4d8a56"/>
+            <!-- Joia do cajado mágico -->
+            <rect x="14" y="10" width="1" height="5" fill="#cfa04e"/>
+            <rect x="13" y="9" width="3" height="2" fill="#b84a4a"/>
+          </svg>
+        </div>
+        <div>
+          <h1>SOPHY ❖ RUÍNAS</h1>
+          <span class="subtitle">[SOPHY v2.1 • MAGA 16-BIT]</span>
+        </div>
+      </div>
+
+      <!-- Decoração de Vinha Pixelada -->
+      <div class="ruin-divider" aria-hidden="true">
+        <span>🌿 ══════ ❖ ══════ 🌿</span>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="tab-hardware">
+          <span class="px-icon">❖</span> 01. ORBE DE HARDWARE &amp; VRAM
+        </button>
+        <button class="nav-btn" data-tab="tab-folders">
+          <span class="px-icon">🏛️</span> 02. GRIMÓRIO &amp; REPOSITÓRIOS
+        </button>
+        <button class="nav-btn" data-tab="tab-credentials">
+          <span class="px-icon">🗝️</span> 03. RELÍQUIAS &amp; CHAVES DE IA
+        </button>
+        <button class="nav-btn" data-tab="tab-persona">
+          <span class="px-icon">🪄</span> 04. ALMA DA SOPHY (PERSONA)
+        </button>
+        <button class="nav-btn" data-tab="tab-console">
+          <span class="px-icon">🍵</span> 05. ALTAR DE DIÁLOGO
+        </button>
+      </nav>
+
+      <!-- SELO ARCANO: MODO ESTRITAMENTE OFFLINE -->
+      <div class="emergency-card" id="emergency-box">
+        <div class="emergency-header">
+          <span class="pulse-dot" id="offline-dot"></span>
+          <strong id="offline-label">SANTUÁRIO HÍBRIDO ATIVO</strong>
+        </div>
+        <p class="emergency-desc">
+          SELO DO ERMITÃO: FECHA AS PONTES DE NUVEM (OPENAI / GEMINI / DISCORD) E MANTÉM A SOPHY 100% NAS RUÍNAS LOCAIS.
+        </p>
+        <button id="btn-emergency-offline" class="btn-emergency">
+          [❖] ATIVAR SELO OFFLINE
+        </button>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL: SALÃO DAS RUÍNAS VERDES -->
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <h2 id="page-title">01. ORBE DE HARDWARE &amp; VRAM</h2>
+          <p class="topbar-meta" id="realtime-clock">RELÓGIO DE SOL DAS RUÍNAS: SINCRONIZANDO...</p>
+        </div>
+        <div class="badges">
+          <span class="badge" id="badge-cloud-ai">NUVEM HÍBRIDA: VERIFICANDO...</span>
+          <span class="badge" id="badge-ollama">OLLAMA: VERIFICANDO...</span>
+          <span class="badge badge-ctx">CTX: 4096 | KEEP_ALIVE: 5M</span>
+        </div>
+      </header>
+
+      <!-- ABA 1: HARDWARE & VRAM -->
+      <section class="tab-panel active" id="tab-hardware">
+        <div class="cards-grid">
+          <!-- Card GPU RTX 4050 -->
+          <div class="card">
+            <div class="card-header">
+              <h3>❖ CRISTAL DE MANA // NVIDIA RTX 4050 (6GB VRAM)</h3>
+              <span class="tag" id="gpu-temp">-- °C</span>
+            </div>
+            <div class="metric-big" id="vram-numbers">-- / -- MiB</div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="vram-bar" style="width: 0%"></div>
+            </div>
+            <div class="metric-sub" id="vram-details">
+              MANA OLLAMA: -- MiB | CARGA DO CRISTAL: --%
+            </div>
+          </div>
+
+          <!-- Card RAM DDR4 -->
+          <div class="card">
+            <div class="card-header">
+              <h3>❖ MEMÓRIA DAS RUÍNAS // 16GB RAM</h3>
+              <span class="tag" id="ram-pct">--%</span>
+            </div>
+            <div class="metric-big" id="ram-numbers">-- / -- GB</div>
+            <div class="progress-bar">
+              <div class="progress-fill progress-Amber" id="ram-bar" style="width: 0%"></div>
+            </div>
+            <div class="metric-sub" id="disk-details">
+              ARCHIVO EM PEDRA (SSD LIVRE): -- GB
+            </div>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <!-- Modelos Carregados na VRAM -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🌿 ESPÍRITOS LOCAIS ALOCADOS (OLLAMA)</h3>
+              <button class="btn-secondary btn-sm" id="btn-refresh-telemetry">[INSPECIONAR]</button>
+            </div>
+            <div id="ollama-models-list" class="models-list">
+              CONSULTANDO AS PEDRAS RUNAS DA VRAM...
+            </div>
+          </div>
+
+          <!-- Cache Offline SQLite -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🏛️ TABULEIRO SQLITE &amp; MEMÓRIA RAG</h3>
+              <button class="btn-secondary btn-sm" id="btn-reindex-rag">[CATALOGAR GRIMÓRIO RAG]</button>
+            </div>
+            <div class="db-stats-grid" id="db-stats-grid">
+              <!-- Preenchido via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTROLE DE FANS E RGB DO TECLADO (AVELL STORM BS) -->
+        <div class="cards-grid">
+          <!-- Card Controle de Ventoinhas (Fans) -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🌀 VENTOS DAS RUÍNAS // CONTROLE DE FANS (AVELL STORM BS)</h3>
+              <span class="tag" id="fan-mode-badge">EQUILIBRADO</span>
+            </div>
+            <p class="muted" id="fan-status-line">
+              CPU: --°C | GPU: --°C | Fans: --% / --%
+            </p>
+
+            <div class="preset-btns-grid">
+              <button class="btn-secondary btn-sm fan-preset-btn" data-fan-mode="silent">
+                🍃 SILENCIOSO (AUTO + ECO)
+              </button>
+              <button class="btn-secondary btn-sm fan-preset-btn" data-fan-mode="balanced">
+                ⚖️ EQUILIBRADO (AUTO)
+              </button>
+              <button class="btn-secondary btn-sm fan-preset-btn" data-fan-mode="performance">
+                🔥 DESEMPENHO (80%)
+              </button>
+              <button class="btn-secondary btn-sm fan-preset-btn" data-fan-mode="turbo">
+                🌪️ TURBO MÁX (100%)
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label>ROTAÇÃO MANUAL DAS FANS: <span id="fan-slider-label">60%</span></label>
+              <div class="input-row">
+                <input type="range" id="slider-fan-speed" min="25" max="100" value="60" />
+                <button class="btn-primary btn-sm" id="btn-apply-manual-fan">[FIXAR %]</button>
+              </div>
+            </div>
+
+            <div class="actions-row" style="flex-wrap: wrap;">
+              <button class="btn-secondary btn-sm" id="btn-sophya-auto-hw">
+                [🪄 DEIXAR SOPHY AJUSTAR PELO CLIMA/TEMP]
+              </button>
+              <button class="btn-primary btn-sm" id="btn-activate-uniwill-driver">
+                [⚡ ATIVAR DRIVER AVELL (TUXEDO)]
+              </button>
+              <span id="fan-feedback" class="feedback-msg"></span>
+            </div>
+          </div>
+
+          <!-- Card Controle de RGB do Teclado -->
+          <div class="card">
+            <div class="card-header">
+              <h3>🌈 RUNAS LUMINOSAS // RGB DO TECLADO</h3>
+              <span class="tag" id="rgb-status-badge">#4d8a56 (80%)</span>
+            </div>
+            <p class="muted">
+              &gt; Escolha um tom do Santuário das Ruínas ou personalize a cor e o brilho das teclas.
+            </p>
+
+            <div class="preset-btns-grid">
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="ruinas_verde">
+                🌿 Verde Ruínas
+              </button>
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="salvia">
+                🍃 Sálvia
+              </button>
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="ouro_antigo">
+                ✨ Ouro Antigo
+              </button>
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="fogueira">
+                🔥 Fogueira
+              </button>
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="cristal_mana">
+                💎 Cristal Mana
+              </button>
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="arcano">
+                🔮 Arcano
+              </button>
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="luz_lunar">
+                🌙 Luz Lunar
+              </button>
+              <button class="btn-secondary btn-sm rgb-preset-btn" data-rgb-preset="off">
+                🌑 Apagar
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label>COR PERSONALIZADA &amp; EFEITO DE LUZ</label>
+              <div class="input-row">
+                <input type="color" id="input-rgb-color" value="#4d8a56" class="color-picker-px" />
+                <select id="select-rgb-effect" class="select-px">
+                  <option value="static">Estático (Cor Fixa)</option>
+                  <option value="off">Desligado</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>INTENSIDADE DO BRILHO: <span id="rgb-brightness-label">80%</span></label>
+              <div class="input-row">
+                <input type="range" id="slider-rgb-brightness" min="0" max="100" value="80" />
+                <button class="btn-primary btn-sm" id="btn-apply-rgb">[ILUMINAR TECLADO]</button>
+              </div>
+            </div>
+            <span id="rgb-feedback" class="feedback-msg"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 2: SELETOR DE PASTAS (OBSIDIAN & CÓDIGO) -->
+      <section class="tab-panel" id="tab-folders">
+        <div class="card">
+          <h3>🏛️ TERRITÓRIOS DO SANTUÁRIO // VAULT OBSIDIAN &amp; CÓDIGO</h3>
+          <p class="muted">
+            &gt; No <strong>OBSIDIAN_VAULT_PATH</strong> a Sophy escreve pergaminhos livremente (`[[wikilinks]]`, YAML, Diários).<br/>
+            &gt; Fora do Grimório, apenas pastas em <strong>ALLOWED_CODE_DIRS</strong> aceitam restauração de código com proteção `.bak`.
+          </p>
+
+          <div class="form-group">
+            <label>CAMINHO DO GRIMÓRIO OBSIDIAN (<code>OBSIDIAN_VAULT_PATH</code>)</label>
+            <div class="input-row">
+              <input type="text" id="input-vault-path" placeholder="./obsidian_vault" />
+              <button class="btn-secondary" id="btn-browse-vault">[EXPLORAR...]</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>REPOSITÓRIOS DE CÓDIGO PERMITIDOS (<code>ALLOWED_CODE_DIRS</code> — CSV)</label>
+            <div class="input-row">
+              <input type="text" id="input-code-dirs" placeholder="./,~/Projects" />
+              <button class="btn-secondary" id="btn-browse-code">[+ ADICIONAR...]</button>
+            </div>
+          </div>
+
+          <!-- Navegador Visual de Pastas Local -->
+          <div id="folder-browser-modal" class="folder-browser hidden">
+            <div class="folder-browser-header">
+              <strong id="browser-current-path">~</strong>
+              <div>
+                <button class="btn-secondary btn-sm" id="btn-browser-up">[..] SUBIR</button>
+                <button class="btn-primary btn-sm" id="btn-browser-select">[OK] ESCOLHER</button>
+                <button class="btn-secondary btn-sm" id="btn-browser-close">[X]</button>
+              </div>
+            </div>
+            <div class="folder-list" id="browser-folder-list"></div>
+          </div>
+
+          <div class="actions-row">
+            <button class="btn-primary" id="btn-save-directories">[GRAVAR TERRITÓRIOS NA PEDRA (.ENV)]</button>
+            <span id="dir-save-feedback" class="feedback-msg"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 3: GERENCIADOR DE CREDENCIAIS VISUAIS E CHAVES DE IA -->
+      <section class="tab-panel" id="tab-credentials">
+        <div class="cards-grid">
+          <div class="card">
+            <h3>🗝️ RELÍQUIAS DE IA HÍBRIDA &amp; INTEGRAÇÕES</h3>
+            <p class="muted">
+              &gt; Alimenta a Sophy (v2.1) com OpenAI Code, Google AI Studio, Claude e integrações das 8 coleções de Skills (Discord, Google Workspace, Finanças, Composio e Spotify).
+            </p>
+
+            <div class="form-group">
+              <label>OPENAI CODE API KEY (<code>oc_sk_...</code>) <span id="openai-code-badge" class="tag"></span></label>
+              <input type="password" id="input-openai-code-key" placeholder="oc_sk_..." />
+            </div>
+
+            <div class="form-group">
+              <label>GOOGLE AI STUDIO KEY (GEMINI) <span id="google-ai-badge" class="tag"></span></label>
+              <input type="password" id="input-google-ai-key" placeholder="AQ.Ab8RN6... / AIza..." />
+            </div>
+
+            <div class="form-group">
+              <label>ANTHROPIC / CLAUDE API KEY (<code>awesome-claude-skills</code>) <span id="anthropic-badge" class="tag"></span></label>
+              <input type="password" id="input-anthropic-key" placeholder="sk-ant-..." />
+            </div>
+
+            <div class="form-group">
+              <label>DISCORD BOT TOKEN <span id="discord-badge" class="tag"></span></label>
+              <input type="password" id="input-discord-token" placeholder="INSIRA NOVO TOKEN DISCORD..." />
+            </div>
+
+            <div class="form-group">
+              <label>DISCORD GUILD / SERVER ID</label>
+              <input type="text" id="input-discord-guild" placeholder="EX: 123456789012345678" />
+            </div>
+
+            <div class="form-group">
+              <label>DISCORD CHANNEL / CHAT ID (#bot)</label>
+              <input type="text" id="input-discord-channel" placeholder="EX: 123456789012345678" />
+            </div>
+
+            <div class="form-group">
+              <label>GOOGLE WORKSPACE OAUTH2 CLIENT ID (<code>gws-cli</code>) <span id="google-badge" class="tag"></span></label>
+              <input type="text" id="input-google-id" placeholder="client-id.apps.googleusercontent.com" />
+            </div>
+
+            <div class="form-group">
+              <label>GOOGLE WORKSPACE OAUTH2 CLIENT SECRET</label>
+              <input type="password" id="input-google-secret" placeholder="GOCSPX-..." />
+            </div>
+
+            <div class="form-group">
+              <label>COMPOSIO API KEY (<code>awesome-claude-skills</code> Apps) <span id="composio-badge" class="tag"></span></label>
+              <input type="password" id="input-composio-key" placeholder="composio_..." />
+            </div>
+
+            <div class="form-group">
+              <label>FINANCE SKILLS KEYS (FINTEL / ADANOS / ALPHA VANTAGE — Opcionais; <code>yfinance</code> &amp; <code>Hyperliquid</code> já ativos!) <span id="finance-badge" class="tag"></span></label>
+              <div class="input-row">
+                <input type="password" id="input-fintel-key" placeholder="FINTEL_API_KEY" />
+                <input type="password" id="input-adanos-key" placeholder="ADANOS_API_KEY" />
+                <input type="password" id="input-alphavantage-key" placeholder="ALPHA_VANTAGE_KEY" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>SPOTIFY CLIENT ID &amp; SECRET (<code>spotipy</code>) <span id="spotify-badge" class="tag"></span></label>
+              <div class="input-row">
+                <input type="text" id="input-spotify-id" placeholder="SPOTIPY_CLIENT_ID" />
+                <input type="password" id="input-spotify-secret" placeholder="SPOTIPY_CLIENT_SECRET" />
+              </div>
+            </div>
+
+            <div class="actions-row">
+              <button class="btn-primary" id="btn-save-credentials">[GUARDAR CHAVES NO COFRE (.ENV)]</button>
+              <span id="cred-save-feedback" class="feedback-msg"></span>
+            </div>
+          </div>
+
+          <!-- QR Code Real do WhatsApp Bridge (whatsmeow) & Status Google Workspace -->
+          <div class="card">
+            <h3>❖ RUNA DE PAREAMENTO // WHATSAPP MCP BRIDGE (REAL)</h3>
+            <p class="muted">&gt; Ponte nativa Go <code>whatsmeow</code> na porta 3001. Clique abaixo para gerar o QR Code real do WhatsApp e escaneie pelo celular (Aparelhos Conectados).</p>
+
+            <div class="form-group">
+              <label>PORTA LOCAL DO MENSAGEIRO WHATSAPP</label>
+              <input type="text" id="input-wpp-port" value="3001" />
+            </div>
+
+            <div class="qr-container" id="wpp-qr-box">
+              <img id="qr-real-img" alt="QR Code Real WhatsApp" style="display:none; width:240px; height:240px; border:4px solid #86cf90; background:#ffffff; padding:8px; border-radius:4px;" />
+              <canvas id="qr-canvas" width="189" height="189" style="display:none;"></canvas>
+              <p id="wpp-qr-status" class="muted">CARREGANDO QR CODE REAL DO WHATSAPP...</p>
+            </div>
+
+            <button class="btn-secondary" id="btn-generate-qr">[GERAR / ATUALIZAR QR CODE REAL WHATSAPP]</button>
+
+            <hr style="border-color:#2a3e30; margin:16px 0;" />
+            <h3>📧 GOOGLE WORKSPACE CLI (<code>gws-cli</code>)</h3>
+            <p class="muted" id="gws-status-text">
+              &gt; Ao salvar <code>GOOGLE_CLIENT_ID</code> e <code>GOOGLE_CLIENT_SECRET</code>, a Sophy cria automaticamente <code>~/.config/gws-cli/client_secret.json</code>.
+            </p>
+            <button class="btn-primary" id="btn-google-oauth" style="margin-top:8px;">[🔑 AUTENTICAR GOOGLE WORKSPACE NO NAVEGADOR]</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>🌿 MENSAGEIROS DAS RUÍNAS // DISCORD • GMAIL • DRIVE • WHATSAPP</h3>
+            <button class="btn-primary btn-sm" id="btn-run-sync-all">[SINCRONIZAR MENSAGEIROS AGORA]</button>
+          </div>
+          <div id="workers-logs-list" class="models-list">
+            AGUARDANDO VIAGEM DOS MENSAGEIROS...
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 4: PERSONA MODULAR -->
+      <section class="tab-panel" id="tab-persona">
+        <div class="card">
+          <h3>🪄 ESSÊNCIA DA SOPHY — SOPHY v2.1 (<code>/00_Persona/personalidade_principal.md</code>)</h3>
+          <p class="muted">
+            &gt; Grimório da personalidade da Sophy (Sophy v2.1 • irmã mais nova da Sophya e maga fofa estilo Frieren). Recarregado automaticamente a cada conversa.
+          </p>
+          <textarea id="textarea-persona" rows="16"></textarea>
+          <div class="actions-row">
+            <button class="btn-primary" id="btn-save-persona">[SELAR ESSÊNCIA NO GRIMÓRIO]</button>
+            <span id="persona-save-feedback" class="feedback-msg"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 5: CONSOLE RÁPIDO COM A IA -->
+      <section class="tab-panel" id="tab-console">
+        <div class="card chat-card">
+          <h3>🍵 ALTAR DE DIÁLOGO // CONVERSAR COM A SOPHY (v2.1)</h3>
+          <div id="chat-log" class="chat-log">
+            <div class="chat-bubble assistant">
+              Ah, oi, usuário... ＜(´⌯  ̫⌯`)＞ 🍵 Eu estava aqui distraída lendo um grimório antigo sobre uma magia para manter o chá sempre quentinho e quase perdi a noção da hora. Como está sendo o seu dia hoje? 📖🌿
+            </div>
+          </div>
+          <div class="input-row">
+            <input type="text" id="input-chat-prompt" placeholder="Converse com a Sophy, peça um feitiço no Obsidian ou uma consulta SQL..." />
+            <button class="btn-primary" id="btn-send-chat">[CONJURAR 🪄]</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js?v=2.2"></script>
+</body>
+</html>

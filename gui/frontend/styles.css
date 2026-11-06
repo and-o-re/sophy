@@ -1,0 +1,736 @@
+/* ==========================================================================
+   ESTÉTICA RETRO PIXEL FANTASY // RUÍNAS ANTIGAS & FLORESTA DE MUSGO (16-BIT)
+   Inspiração: Santuários de RPG 16-bit (Zelda ALTTP, Secret of Mana, Chrono Trigger)
+   ========================================================================== */
+
+:root {
+  /* Pedra Antiga & Musgo Profundo */
+  --bg-ruins: #0c140e;
+  --bg-panel: #132017;
+  --bg-card: #192a1e;
+  --bg-input: #0a110c;
+
+  /* Verdes de Musgo, Folha, Sálvia e Relíquia Dourada */
+  --px-moss: #4d8a56;
+  --px-sage: #86cf90;
+  --px-leaf: #62ab6c;
+  --px-emerald: #2f5736;
+  --px-stone-border: #384d3b;
+  --px-stone-dark: #070c08;
+
+  /* Pergaminho, Texto Suave e Destaques Arcanos */
+  --px-text: #e4f0df;
+  --px-muted: #8fa990;
+  --px-gold: #d8b86a;
+  --px-amber: #cfa04e;
+  --px-ruby: #b84a4a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* Pixel Art Clássica: Cantos de blocos de pedra */
+  image-rendering: pixelated;
+}
+
+body {
+  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+  background-color: var(--bg-ruins);
+  /* Textura de blocos de ruína e poeira de vagalumes da floresta */
+  background-image:
+    radial-gradient(rgba(134, 207, 144, 0.07) 1px, transparent 0),
+    radial-gradient(rgba(216, 184, 106, 0.05) 1px, transparent 0);
+  background-size: 20px 20px, 36px 36px;
+  background-position: 0 0, 10px 14px;
+  color: var(--px-text);
+  height: 100vh;
+  overflow: hidden;
+  letter-spacing: 0.02em;
+}
+
+/* OVERLAY DE FOLHAGEM SUAVE & VINHETA DE RUÍNA */
+.ruins-canopy-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 3px,
+      rgba(8, 16, 10, 0.16) 4px
+    );
+}
+
+.ruins-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+  box-shadow: inset 0 0 85px rgba(5, 10, 6, 0.72);
+}
+
+/* LAYOUT SHELL */
+.app-shell {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* BARRA LATERAL: PILAR DE PEDRA TALHADA E MUSGO */
+.sidebar {
+  background-color: var(--bg-panel);
+  border-right: 3px solid var(--px-moss);
+  box-shadow: 4px 0 0 var(--px-stone-dark);
+  padding: 18px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+}
+
+.pixel-avatar {
+  border: 2px solid var(--px-gold);
+  outline: 2px solid var(--px-emerald);
+  background-color: var(--bg-ruins);
+  padding: 3px;
+  box-shadow: 3px 3px 0 var(--px-stone-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand h1 {
+  font-size: 16px;
+  color: var(--px-gold);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-shadow: 2px 2px 0 var(--px-stone-dark);
+}
+
+.subtitle {
+  font-size: 11px;
+  color: var(--px-sage);
+  display: block;
+  margin-top: 3px;
+}
+
+.ruin-divider {
+  text-align: center;
+  font-size: 11px;
+  color: var(--px-moss);
+  padding-bottom: 10px;
+  border-bottom: 2px dashed var(--px-emerald);
+  user-select: none;
+}
+
+/* MENU LATERAL ESTILO SANTUÁRIO RPG 16-BIT */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  flex: 1;
+}
+
+.nav-btn {
+  background-color: var(--bg-card);
+  color: var(--px-muted);
+  border: 2px solid var(--px-stone-border);
+  box-shadow: 3px 3px 0 var(--px-stone-dark);
+  padding: 11px 12px;
+  text-align: left;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.08s steps(2), border-color 0.12s, background-color 0.12s;
+}
+
+.px-icon {
+  color: var(--px-gold);
+  font-weight: 800;
+}
+
+.nav-btn:hover {
+  color: var(--px-text);
+  border-color: var(--px-sage);
+  background-color: #203626;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--px-stone-dark);
+}
+
+.nav-btn.active {
+  background-color: #233c29;
+  color: var(--px-gold);
+  border: 2px solid var(--px-sage);
+  outline: 1px solid var(--px-emerald);
+  box-shadow: 4px 4px 0 var(--px-stone-dark);
+}
+
+/* SELO DO ERMITÃO (MODO OFFLINE) */
+.emergency-card {
+  background-color: #15251a;
+  border: 2px solid var(--px-moss);
+  box-shadow: 4px 4px 0 var(--px-stone-dark);
+  padding: 12px;
+}
+
+.emergency-card.strict-active {
+  background-color: #291414;
+  border-color: var(--px-ruby);
+  box-shadow: 4px 4px 0 #140707;
+}
+
+.emergency-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--px-sage);
+  margin-bottom: 6px;
+}
+
+.emergency-card.strict-active .emergency-header {
+  color: #f09b9b;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--px-sage);
+  box-shadow: 0 0 6px var(--px-sage);
+  display: inline-block;
+}
+
+.emergency-card.strict-active .pulse-dot {
+  background-color: var(--px-ruby);
+  box-shadow: 0 0 8px var(--px-ruby);
+}
+
+.emergency-desc {
+  font-size: 11px;
+  color: var(--px-muted);
+  line-height: 1.38;
+  margin-bottom: 10px;
+}
+
+.btn-emergency {
+  width: 100%;
+  padding: 9px 8px;
+  border: 2px solid #dfa0a0;
+  background-color: #8c3838;
+  color: #fff6e8;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 11.5px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #1a0808;
+  text-transform: uppercase;
+}
+
+.btn-emergency:hover {
+  background-color: #a34343;
+}
+
+.btn-emergency:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #1a0808;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main-content {
+  padding: 22px 26px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--px-moss);
+  box-shadow: 0 3px 0 var(--px-stone-dark);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.topbar h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--px-gold);
+  text-shadow: 2px 2px 0 var(--px-stone-dark);
+  text-transform: uppercase;
+}
+
+.topbar-meta {
+  font-size: 12px;
+  color: var(--px-muted);
+  margin-top: 4px;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--px-moss);
+  color: var(--px-sage);
+  box-shadow: 3px 3px 0 var(--px-stone-dark);
+}
+
+.badge-ctx {
+  border-color: var(--px-gold);
+  color: var(--px-gold);
+}
+
+.tab-panel {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tab-panel.active {
+  display: flex;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 18px;
+}
+
+/* CARDS ESTILO TÁBUA DE PEDRA ANTIGA COM MUSGO */
+.card {
+  background-color: var(--bg-panel);
+  border: 2px solid var(--px-moss);
+  outline: 2px solid var(--px-stone-border);
+  box-shadow: 5px 5px 0 var(--px-stone-dark);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+/* Detalhe de musgo/runa nos cantos superiores dos cards */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 4px;
+  background-color: var(--px-sage);
+  pointer-events: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed var(--px-emerald);
+  padding-bottom: 8px;
+}
+
+.card h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--px-gold);
+  text-shadow: 1px 1px 0 var(--px-stone-dark);
+  text-transform: uppercase;
+}
+
+.muted {
+  font-size: 12px;
+  color: var(--px-muted);
+  line-height: 1.5;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  background-color: var(--bg-input);
+  color: var(--px-sage);
+  border: 2px solid var(--px-moss);
+}
+
+.metric-big {
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--px-sage);
+  text-shadow: 2px 2px 0 var(--px-stone-dark);
+}
+
+.metric-sub {
+  font-size: 11.5px;
+  color: var(--px-muted);
+}
+
+/* BARRA DE MANA / PROGRESSO EM BLOCOS PIXELADOS DE FOLHA E ÂMBAR */
+.progress-bar {
+  width: 100%;
+  height: 18px;
+  background-color: var(--bg-input);
+  border: 2px solid var(--px-moss);
+  padding: 2px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--px-leaf) 0px,
+    var(--px-sage) 8px,
+    var(--bg-input) 8px,
+    var(--bg-input) 11px
+  );
+  transition: width 0.25s steps(12);
+}
+
+.progress-fill.progress-warn {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--px-ruby) 0px,
+    var(--px-ruby) 8px,
+    var(--bg-input) 8px,
+    var(--bg-input) 11px
+  );
+}
+
+.progress-fill.progress-Amber {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--px-gold) 0px,
+    var(--px-amber) 8px,
+    var(--bg-input) 8px,
+    var(--bg-input) 11px
+  );
+}
+
+/* LISTA DE MODELOS E TABELAS SQLITE */
+.models-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12.5px;
+}
+
+.model-item {
+  background-color: var(--bg-card);
+  border: 2px solid var(--px-stone-border);
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.db-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.db-stat-box {
+  background-color: var(--bg-card);
+  border: 2px solid var(--px-stone-border);
+  padding: 10px 6px;
+  text-align: center;
+  box-shadow: 3px 3px 0 var(--px-stone-dark);
+}
+
+.db-stat-box strong {
+  display: block;
+  font-size: 18px;
+  color: var(--px-gold);
+}
+
+.db-stat-box span {
+  font-size: 10.5px;
+  color: var(--px-muted);
+}
+
+/* FORMULÁRIOS E BOTÕES DE PEDRA E FOLHA */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--px-sage);
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  background-color: var(--bg-input);
+  border: 2px solid var(--px-stone-border);
+  color: var(--px-text);
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  box-shadow: inset 2px 2px 0 #050906;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  border-color: var(--px-sage);
+  box-shadow: 0 0 8px rgba(134, 207, 144, 0.25);
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.actions-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.btn-primary {
+  background-color: var(--px-moss);
+  color: #f4faef;
+  border: 2px solid var(--px-sage);
+  padding: 10px 16px;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--px-stone-dark);
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background-color: var(--px-leaf);
+  border-color: var(--px-gold);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--px-stone-dark);
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--px-stone-dark);
+}
+
+.btn-secondary {
+  background-color: var(--bg-card);
+  color: var(--px-gold);
+  border: 2px solid var(--px-moss);
+  padding: 9px 14px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--px-stone-dark);
+}
+
+.btn-secondary:hover {
+  border-color: var(--px-sage);
+  background-color: #213827;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 11px;
+}
+
+/* CONTROLES DE FANS E RGB DO TECLADO */
+.preset-btns-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+input[type="range"] {
+  flex: 1;
+  accent-color: var(--px-sage);
+  background-color: var(--bg-input);
+  border: 2px solid var(--px-stone-border);
+  height: 14px;
+  cursor: pointer;
+}
+
+.color-picker-px {
+  width: 56px;
+  height: 38px;
+  background-color: var(--bg-input);
+  border: 2px solid var(--px-gold);
+  padding: 2px;
+  cursor: pointer;
+}
+
+.select-px {
+  flex: 1;
+  background-color: var(--bg-input);
+  border: 2px solid var(--px-stone-border);
+  color: var(--px-text);
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.feedback-msg {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--px-sage);
+}
+
+/* NAVEGADOR DE PASTAS RETRO */
+.folder-browser {
+  background-color: var(--bg-input);
+  border: 2px solid var(--px-sage);
+  box-shadow: 4px 4px 0 var(--px-stone-dark);
+  padding: 12px;
+}
+
+.folder-browser.hidden {
+  display: none;
+}
+
+.folder-browser-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--px-gold);
+}
+
+.folder-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.folder-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--px-stone-border);
+  padding: 7px 10px;
+  font-size: 12px;
+  color: var(--px-text);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.folder-item:hover {
+  border-color: var(--px-sage);
+  color: var(--px-gold);
+  background-color: #213827;
+}
+
+/* RUNA QR CODE EM MUSGO E SÁLVIA */
+.qr-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-input);
+  border: 2px dashed var(--px-moss);
+  padding: 16px;
+  gap: 10px;
+}
+
+#qr-canvas {
+  background-color: #0c140e;
+  border: 3px solid var(--px-gold);
+  outline: 2px solid var(--px-moss);
+  box-shadow: 4px 4px 0 var(--px-stone-dark);
+  padding: 6px;
+}
+
+/* ALTAR DE DIÁLOGO (CHAT COM A SOPHYA) */
+.chat-card {
+  height: calc(100vh - 145px);
+}
+
+.chat-log {
+  flex: 1;
+  background-color: var(--bg-input);
+  border: 2px solid var(--px-stone-border);
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 11px 15px;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background-color: #1f3726;
+  border: 2px solid var(--px-sage);
+  color: var(--px-text);
+  box-shadow: 3px 3px 0 var(--px-stone-dark);
+}
+
+.chat-bubble.assistant {
+  align-self: flex-start;
+  background-color: var(--bg-card);
+  border: 2px solid var(--px-gold);
+  color: var(--px-text);
+  box-shadow: 3px 3px 0 var(--px-stone-dark);
+}
+
+/* SCROLLBAR DE PEDRA E MUSGO */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-ruins);
+  border-left: 1px solid var(--px-stone-border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--px-moss);
+  border: 1px solid var(--px-sage);
+}
