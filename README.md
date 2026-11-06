@@ -257,4 +257,4 @@ Issues e pull requests são bem-vindos. Antes de enviar uma mudança, rode `.ven
 
 ## Licença
 
-A definir pelo autor antes de publicar (sugestão: MIT).
+Este projeto está licenciado sob a licença MIT
